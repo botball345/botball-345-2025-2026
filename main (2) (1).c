@@ -1,0 +1,73 @@
+#include <kipr/wombat.h>
+void drive(int left_motor, int right_motor, int time){
+    motor(0,left_motor);
+    motor(3,right_motor);
+    msleep(time);
+}
+void servo (int arm, int claw, int time){
+    set_servo_position(0,arm);
+    set_servo_position(3,claw);
+    msleep(time);
+}
+int main()
+{
+    enable_servos();
+    //lift claw
+    servo(1800,0,100);
+    //drive straight
+    drive(50,55,4550);
+    //turn right
+    drive(15,100,1980);
+    //drive straight a little
+    drive(50,50,1350);
+    //wait
+    drive(0,0,1500);
+    //turn left
+    drive(100,-100,750);
+    //wait
+    drive(0,0,250);
+    //move very little forward
+    drive(100,100,250);
+    // raise claw
+    servo(50,0,100);
+    //back up
+    drive(-100,-100,500);
+    //turn right
+    drive(-100,100,1650);
+    //wait
+    drive(0,0,500);
+    //move straight
+    drive(100,100,2000);
+    //turn right
+    drive(-100,100,150);
+    //wait
+    drive(0,0,500);
+    //lower the claw
+    servo(1800,200,100);
+    //drive straight
+    drive(50,50,500);
+    //wait
+    drive(0,0,500);
+    //drive straight
+    drive(50,50,300);
+    //wait
+    drive(0,0,500);
+    //close claw a little
+    servo(1800,750,100);
+    //wait
+    drive(0,0,500);
+    //close claw a little
+    servo(1800,1350,100);
+    //wait
+    drive(0,0,500);
+    //close claw a little
+    servo(1800,1900,100);
+
+
+
+
+
+
+
+    return 0;
+}
